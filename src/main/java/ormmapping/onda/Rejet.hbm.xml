@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="onda.Rejet" table="Rejet" lazy="false">
+		<id name="id_Rejet" column="Id_Rejet" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="op" column="OrdrePaimentId_Op" class="onda.OrdrePaiment" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="date_Rejet" column="Date_Rejet" type="date" not-null="false" lazy="false"/>
+		<set name="ORM_Directions" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="RejetId_Rejet" not-null="false"/>
+			<one-to-many class="onda.Direction"/>
+		</set>
+		<set name="ORM_Motifs" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="RejetId_Rejet" not-null="true"/>
+			<one-to-many class="onda.Motif"/>
+		</set>
+	</class>
+</hibernate-mapping>

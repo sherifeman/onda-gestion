@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="onda.Journal" table="Journal" lazy="false">
+		<id name="id_Journal" column="Id_Journal" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="user" column="UserId_User" class="onda.User" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="facture" cascade="lock" column="FactureId_Fac" class="onda.Facture" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="date_Fct" column="Date_Fct" type="date" not-null="false" lazy="false"/>
+		<property name="libelle" column="Libelle" type="string" length="255" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>

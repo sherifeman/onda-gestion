@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: DuKe TeAm
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="onda.HistoriqueActions" table="HistoriqueActions" lazy="false">
+		<id name="id_Historique" column="Id_Historique" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="statut" column="StatutId_Statu" class="onda.Statut" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="service" column="ServiceId_Serv" class="onda.Service" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="facture" cascade="lock" column="FactureId_Fac" class="onda.Facture" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="date_Recp" column="Date_Recp" type="date" not-null="false" lazy="false"/>
+		<property name="date_Envoi" column="Date_Envoi" type="date" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>
